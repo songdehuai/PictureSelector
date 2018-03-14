@@ -43,6 +43,7 @@ public class PictureSelectorActivity extends AppCompatActivity {
         localImageList = new ArrayList<>();
         localImageList = LocalImageTools.init(getApplicationContext()).getAll();
         mainAdapter = new MainAdapter(getApplicationContext(), localImageList);
+        mainAdapter.setMaxCount(9);
         recyclerView.setAdapter(mainAdapter);
         btn_finish.setOnClickListener(new View.OnClickListener() {
             @Override

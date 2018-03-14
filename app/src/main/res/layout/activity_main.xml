@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <Button
@@ -13,5 +14,12 @@
     <TextView
         android:id="@+id/main_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp" />
+
+
+    <com.songdehuai.pictureselector.view.ImagePicker
+        android:id="@+id/image_pc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </LinearLayout>

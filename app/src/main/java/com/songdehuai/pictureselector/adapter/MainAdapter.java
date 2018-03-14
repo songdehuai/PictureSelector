@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.songdehuai.pictureselector.R;
@@ -24,6 +25,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainImageViewH
     private Context context;
     private List<LocalImage> localImageList;
     private List<LocalImage> selectImages;
+    private int maxCount = 9;
+
+    public void setMaxCount(int maxCount) {
+        this.maxCount = maxCount;
+    }
 
     public MainAdapter(Context context, List<LocalImage> localImageList) {
         this.context = context;
@@ -46,11 +52,16 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MainImageViewH
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                localImage.setSelect(isChecked);
-                if (isChecked) {
-                    selectImages.add(localImage);
+                if (selectImages.size() < maxCount) {
+                    localImage.setSelect(isChecked);
+                    if (isChecked) {
+                        selectImages.add(localImage);
+                    } else {
+                        selectImages.remove(localImage);
+                    }
                 } else {
-                    selectImages.remove(localImage);
+                    buttonView.setChecked(false);
+                    Toast.makeText(context, "达到图片选择上限", Toast.LENGTH_SHORT).show();
                 }
             }
         });
